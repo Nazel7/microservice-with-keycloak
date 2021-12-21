@@ -1,0 +1,21 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: CONFIG-SERVER
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Nazel7/local-config-public.git
+          clone-on-start: true
+      fail-fast: true
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+

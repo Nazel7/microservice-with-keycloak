@@ -1,0 +1,14 @@
+
+spring:
+  application:
+    name: INVENTORY-SERVICE
+  cloud:
+    vault:
+      host: 127.0.0.1
+      port: 8200
+      scheme: http
+      token: password01
+      kv:
+        enabled: true
+      authentication: TOKEN
+

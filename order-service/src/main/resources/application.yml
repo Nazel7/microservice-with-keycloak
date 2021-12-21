@@ -1,0 +1,50 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: ORDER-SERVICE
+  profiles:
+    active: default
+  cloud:
+    config:
+      profile: default
+      name: order-service
+    stream:
+      bindings:
+        notificationEventSupplier-out-0:
+           destination: notification-events
+      source: notificationEventSupplier
+  sleuth:
+    sampler:
+      probability: 1.0
+    circuitbreaker:
+      enabled: false
+  zipkin:
+    base-url: http://localhost:9411/
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+
+
+  datasource:
+    password: ${DBpassword}
+    username: ${DBusername}
+    initialization-mode: always
+  config:
+    import: optional:configserver:http://localhost:8888
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+

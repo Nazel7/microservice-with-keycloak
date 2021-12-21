@@ -1,0 +1,18 @@
+
+spring:
+  application:
+    name: PRODUCT-SERVICE
+  cloud:
+    vault:
+      host: 127.0.0.1
+      port: 8200
+      scheme: http
+      token: password01
+      kv:
+        enabled: true
+      authentication: TOKEN
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/auth/realms/Gafar

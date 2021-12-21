@@ -1,0 +1,52 @@
+server:
+  port: 8183
+
+spring:
+  application:
+    name: INVENTORY-SERVICE
+  cloud:
+    config:
+      uri: http://localhost:8888
+      profile: default
+      name: inventory-service
+
+  datasource:
+    password: ${DBpassword}
+    username: ${DBusername}
+    initialization-mode: always
+  sleuth:
+    sampler:
+      probability: 1.0
+    circuitbreaker:
+      enabled: false
+  zipkin:
+    base-url: http://localhost:9411/
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+    defer-datasource-initialization: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/auth/realms/Gafar
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+management:
+  endpoints:
+     web:
+       exposure:
+         include: '*'

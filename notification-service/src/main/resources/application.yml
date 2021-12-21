@@ -1,0 +1,26 @@
+
+server:
+  port: 0
+spring:
+  application:
+    name: NOTIFICATION-SERVICE
+  cloud:
+    stream:
+      bindings:
+        notificationEventSupplier-in-0:
+          destination: notification-events
+  sleuth:
+    sampler:
+      probability: 1.0
+    circuitbreaker:
+      enabled: false
+  zipkin:
+    base-url: http://localhost:9411/
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+  client:
+    register-with-eureka: true
+    fetch-registry:  true

@@ -1,0 +1,3 @@
+{
+  "mongodb-u" : "mongodb://localhost:27017/productDB"
+}
